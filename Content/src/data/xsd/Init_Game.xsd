@@ -6,7 +6,13 @@
     <xs:element name="Game1">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="pacman" type="player"/
+                <xs:element name="pacman" type="player"/>
+                
+                <!-- PAUL ADDITIONS FOR XSLT DATA DISPLAY-->
+                <xs:element name="player_name" type="player_name"/>
+                <xs:element name="player_scores" type="scores"/>
+                <!--////////////////0_0//////////////////-->
+                
                 <xs:element name="carte" type="carte_type"/>
                 <xs:element name="ghosts" type="ghost" maxOccurs="unbounded"/>
                 <xs:element name="points" type="objet" maxOccurs="unbounded"/>
@@ -34,7 +40,36 @@
             <xs:element name="animationInterval" type="xs:float"/>
         </xs:sequence>
     </xs:complexType>
-
+    
+    
+    
+    
+    <!--////////////////0_0//////////////////-->
+    <!-- PAUL ADDITIONS FOR XSLT DATA DISPLAY-->
+    
+    <!-- Type Complexe player_name-->
+    <xs:complexType name="player_name">
+        <xs:sequence>
+            <xs:element name="first_name" type="xs:string"/>
+            <xs:element name="last_name" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="scores">
+        <xs:sequence>
+            <xs:element name="tot_pellets_eaten" type="xs:int"/>
+            <xs:element name="tot_games_played" type="xs:int"/>
+            <xs:element name="tot_games_won" type="xs:int"/>
+            <xs:element name="tot_games_lost" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!--////////////////////////////////////-->
+    
+    
+    
+    
     <!-- Type complexe pour un Creature -->
     <xs:complexType name="ghost">
         <xs:sequence>
