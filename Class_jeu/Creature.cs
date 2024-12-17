@@ -28,7 +28,7 @@ namespace BasicMonoGame
        
        
 
-
+//SECOND TEST
         public void recupGhoste(string xmlPath)
         {
             XmlReader reader = XmlReader.Create(xmlPath); // Initialiser le XmlReader
