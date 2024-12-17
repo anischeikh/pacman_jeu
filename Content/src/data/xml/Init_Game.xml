@@ -2,9 +2,23 @@
 <Game1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
        xsi:noNamespaceSchemaLocation="../xsd/Init_Game.xsd">
     <pacman>
-        <rotation>hhhhhh</rotation>
+        <rotation>0.25</rotation>
         <animationInterval>0.5</animationInterval>
     </pacman>
+    <!--////////////////0_0//////////////////-->
+    <!-- PAUL ADDITIONS FOR XSLT DATA DISPLAY-->
+    <player_name>
+        <first_name>Iguana</first_name>
+        <last_name>Flying</last_name>
+        <email>iguanaflying@gmail.com</email>
+    </player_name>
+    <player_scores>
+        <tot_pellets_eaten>0</tot_pellets_eaten>
+        <tot_games_played>0</tot_games_played>
+        <tot_games_won>0</tot_games_won>
+        <tot_games_lost>0</tot_games_lost>
+    </player_scores>
+    <!--////////////////////////////////////-->
     <carte>
         <map>
             <ligne>0 0 0 0 0 0 0 0 0 0 0 0 0</ligne>
@@ -22,7 +36,7 @@
             <ligne>0 1 0 0 0 0 0 0 0 0 0 1 1</ligne>
             <ligne>0 0 0 0 0 0 0 0 0 0 0 0 1</ligne>
         </map>
-        <taille>50</taille
+        <taille>50</taille>
     </carte>
 
 
@@ -52,3 +66,4 @@
     <SelectOption> 0</SelectOption>
     <gameOverOption>0</gameOverOption>
 </Game1>
+
