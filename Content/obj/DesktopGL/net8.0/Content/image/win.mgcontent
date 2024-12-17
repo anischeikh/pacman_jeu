@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/DVE/Desktop/JEU/Content/image/win.jpg</SourceFile>
-  <SourceTime>2024-12-15T01:50:56.8318473+01:00</SourceTime>
-  <DestFile>C:/Users/DVE/Desktop/JEU/Content/bin/DesktopGL/Content/image/win.xnb</DestFile>
-  <DestTime>2024-12-16T23:09:50.8636529+01:00</DestTime>
+  <SourceFile>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/win.jpg</SourceFile>
+  <SourceTime>2024-12-17T02:54:49.0001613+01:00</SourceTime>
+  <DestFile>C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/win.xnb</DestFile>
+  <DestTime>2024-12-17T03:17:29.5949314+01:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2024-08-16T19:05:56+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

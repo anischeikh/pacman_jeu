@@ -1,1 +1,12 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/coin.png","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/coin.xnb","TextureProcessor","Texture2DContent",638,4045,0,3311724
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/creature.jpg","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/creature.xnb","TextureProcessor","Texture2DContent",1120,9689,0,0228127
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/finish.jpg","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/finish.xnb","TextureProcessor","Texture2DContent",18412,1327189,0,0921269
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/image.jpg","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/image.xnb","TextureProcessor","Texture2DContent",16078,1399217,0,0872867
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/lock-open.png","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/lock-open.xnb","TextureProcessor","Texture2DContent",634,4181,0,0032188
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/pacman.png","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/pacman.xnb","TextureProcessor","Texture2DContent",1216,4181,0,005423
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/wall.jpg","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/wall.xnb","TextureProcessor","Texture2DContent",1242,9301,0,0045114
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/win.jpg","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/image/win.xnb","TextureProcessor","Texture2DContent",12104,616165,0,0324702
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/menuSound.wav","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/sound/menuSound.xnb","SoundEffectProcessor","SoundEffectContent",46592,46595,0,3610049
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/pacman_death.wav","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/sound/pacman_death.xnb","SoundEffectProcessor","SoundEffectContent",17008,17021,0,2355155
+"C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/pacman_eatCoin.wav","C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/sound/pacman_eatCoin.xnb","SoundEffectProcessor","SoundEffectContent",5120,4950,0,2628782

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace pacman;
 public class Sprite
-{
+{//
     protected Texture2D texture;
     public Rectangle rectangle;
     public Vector2 position;
