@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+
 //test github this is test
 
 namespace Pacman
@@ -8,8 +10,12 @@ namespace Pacman
         static void Main(string[] args)
         {
             // Création et lancement du jeu
-            string xmlFile = "src/data/xml/Init_Game.xml";
-            string xsdFile = "src/data/xsd/Init_Game.xsd";
+             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+             string xmlFile = Path.Combine("src", "data", "xml", "Init_Game.xml");
+             string xsdFile = Path.Combine("src", "data", "xsd", "Init_Game.xsd");
+            Console.WriteLine($"Chemin XML : {xmlFile}");
+            Console.WriteLine($"Chemin XSD : {xsdFile}");
+
 
             bool isValid = XmlValidator.ValidateXml(xmlFile, xsdFile);
 

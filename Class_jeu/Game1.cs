@@ -124,9 +124,10 @@ namespace pacman
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(xmlPath);
             XmlNodeList lignes = xmlDoc.SelectNodes("//map/ligne");
-
+            Console.WriteLine("map du jeu: \n");
             foreach (XmlNode ligne in lignes)
-            {
+            {   
+               
                 Console.WriteLine(ligne.InnerText);
             }
 

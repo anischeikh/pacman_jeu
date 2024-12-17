@@ -8,42 +8,52 @@ public class XmlValidator
     {
         try
         {
-            // Charger le schéma XSD
+            // Charger le schéma XSD explicitement
             XmlSchemaSet schemas = new XmlSchemaSet();
-            schemas.Add("", xsdFilePath);
+            schemas.Add(null, xsdFilePath); // Namespace null car noNamespaceSchemaLocation
 
-            // Créer un lecteur XML
-            XmlReaderSettings settings = new XmlReaderSettings();
+            // Paramètres du lecteur XML pour la validation
+            XmlReaderSettings settings = new XmlReaderSettings
+            {
+                ValidationType = ValidationType.Schema
+            };
             settings.Schemas.Add(schemas);
-            settings.ValidationType = ValidationType.Schema;
 
-            // Événement de validation
-            settings.ValidationEventHandler += new ValidationEventHandler(ValidationCallback);
+            // Gestion des erreurs de validation
+            settings.ValidationEventHandler += ValidationCallback;
 
             // Charger et valider le fichier XML
             using (XmlReader reader = XmlReader.Create(xmlFilePath, settings))
             {
-                while (reader.Read()) { }
+                while (reader.Read()) { } // Lire tout le document pour forcer la validation
             }
 
-            return true;
+            Console.WriteLine("Validation réussie : Aucun problème détecté.");
+            return true; // Retourne vrai si aucune erreur
+        }
+        catch (XmlException ex)
+        {
+            Console.WriteLine($"Erreur XML : {ex.Message}");
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erreur de validation : {ex.Message}");
-            return false;
+            Console.WriteLine($"Erreur inattendue : {ex.Message}");
         }
+
+        return false; // Retourne faux en cas d'erreur
     }
 
+    // Callback pour gérer les erreurs de validation
     private static void ValidationCallback(object sender, ValidationEventArgs e)
     {
-        if (e.Severity == XmlSeverityType.Warning)
+        if (e.Severity == XmlSeverityType.Error)
         {
-            Console.WriteLine($"Avertissement: {e.Message}");
+            Console.WriteLine($"Erreur : {e.Message}");
+            throw new XmlException(e.Message); // Arrêter immédiatement si erreur
         }
         else
         {
-            Console.WriteLine($"Erreur: {e.Message}");
+            Console.WriteLine($"Avertissement : {e.Message}");
         }
     }
 }
