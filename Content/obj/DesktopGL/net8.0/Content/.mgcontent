@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/coin.png</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/creature.jpg</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/finish.jpg</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/image.jpg</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/lock-open.png</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/pacman.png</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/wall.jpg</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/image/win.jpg</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/sound/menuSound.wav</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/sound/pacman_death.wav</File>
+    <File>C:/Users/DVE/Desktop/JEU/Content/sound/pacman_eatCoin.wav</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>

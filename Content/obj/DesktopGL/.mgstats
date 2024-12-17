@@ -1,0 +1,7 @@
+Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
+"C:/Users/DVE/Desktop/NouveauJeu_parser/Content/Amanger.png","C:/Users/DVE/Desktop/NouveauJeu_parser/Content/bin/DesktopGL/Amanger.xnb","TextureProcessor","Texture2DContent",1951,6485,0,1243505
+"C:/Users/DVE/Desktop/NouveauJeu_parser/Content/game-over.jpg","C:/Users/DVE/Desktop/NouveauJeu_parser/Content/bin/DesktopGL/game-over.xnb","TextureProcessor","Texture2DContent",80615,4971285,1,2506694
+"C:/Users/DVE/Desktop/NouveauJeu_parser/Content/ghoste.png","C:/Users/DVE/Desktop/NouveauJeu_parser/Content/bin/DesktopGL/ghoste.xnb","TextureProcessor","Texture2DContent",1573,3685,0,1052741
+"C:/Users/DVE/Desktop/NouveauJeu_parser/Content/menu.spritefont","C:/Users/DVE/Desktop/NouveauJeu_parser/Content/bin/DesktopGL/menu.xnb","FontDescriptionProcessor","SpriteFontContent",501,37562,1,6734132
+"C:/Users/DVE/Desktop/NouveauJeu_parser/Content/pacman.png","C:/Users/DVE/Desktop/NouveauJeu_parser/Content/bin/DesktopGL/pacman.xnb","TextureProcessor","Texture2DContent",686,3925,0,0308811
+"C:/Users/DVE/Desktop/NouveauJeu_parser/Content/pacmanFerme.png","C:/Users/DVE/Desktop/NouveauJeu_parser/Content/bin/DesktopGL/pacmanFerme.xnb","TextureProcessor","Texture2DContent",478,3685,0,0373143
