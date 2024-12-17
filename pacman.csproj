@@ -17,6 +17,12 @@
         <None Remove="Content\win.jpeg" />
         <None Remove="Content\game-over.png" />
         <None Remove="Content\File.spritefont" />
+        <None Update="Content\src\data\xml\Init_Game.xml">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="Content\src\data\xsd\Init_Game.xsd">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="Icon.ico">

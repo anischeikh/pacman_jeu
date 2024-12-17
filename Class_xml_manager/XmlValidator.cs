@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 
@@ -8,52 +9,60 @@ public class XmlValidator
     {
         try
         {
-            // Charger le schéma XSD explicitement
-            XmlSchemaSet schemas = new XmlSchemaSet();
-            schemas.Add(null, xsdFilePath); // Namespace null car noNamespaceSchemaLocation
+            Console.WriteLine("Début de la validation...");
 
-            // Paramètres du lecteur XML pour la validation
-            XmlReaderSettings settings = new XmlReaderSettings
+            // Vérifier que les fichiers existent
+            if (!File.Exists(xmlFilePath) || !File.Exists(xsdFilePath))
             {
-                ValidationType = ValidationType.Schema
-            };
-            settings.Schemas.Add(schemas);
+                Console.WriteLine("Erreur : Un des fichiers (XML ou XSD) est introuvable.");
+                return false;
+            }
 
-            // Gestion des erreurs de validation
+            Console.WriteLine($"Fichier XML : {Path.GetFullPath(xmlFilePath)}");
+            Console.WriteLine($"Fichier XSD : {Path.GetFullPath(xsdFilePath)}");
+
+            // Charger le schéma XSD
+            XmlSchemaSet schemas = new XmlSchemaSet();
+            schemas.Add("", xsdFilePath);
+            Console.WriteLine("Schéma XSD chargé avec succès.");
+
+            // Créer un lecteur XML
+            XmlReaderSettings settings = new XmlReaderSettings();
+            settings.Schemas.Add(schemas);
+            settings.ValidationType = ValidationType.Schema;
             settings.ValidationEventHandler += ValidationCallback;
 
-            // Charger et valider le fichier XML
+            // Lire et valider le fichier XML
             using (XmlReader reader = XmlReader.Create(xmlFilePath, settings))
             {
-                while (reader.Read()) { } // Lire tout le document pour forcer la validation
+                while (reader.Read()) { }
             }
 
             Console.WriteLine("Validation réussie : Aucun problème détecté.");
-            return true; // Retourne vrai si aucune erreur
+            return true;
         }
-        catch (XmlException ex)
+        catch (XmlSchemaValidationException ex)
         {
-            Console.WriteLine($"Erreur XML : {ex.Message}");
+            Console.WriteLine($"Erreur de validation XML : {ex.Message}");
+            return false;
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"Erreur inattendue : {ex.Message}");
+            Console.WriteLine($"Erreur générale : {ex.Message}");
+            return false;
         }
-
-        return false; // Retourne faux en cas d'erreur
     }
 
-    // Callback pour gérer les erreurs de validation
     private static void ValidationCallback(object sender, ValidationEventArgs e)
     {
-        if (e.Severity == XmlSeverityType.Error)
+        if (e.Severity == XmlSeverityType.Warning)
         {
-            Console.WriteLine($"Erreur : {e.Message}");
-            throw new XmlException(e.Message); // Arrêter immédiatement si erreur
+            Console.WriteLine($"Avertissement : {e.Message}");
         }
         else
         {
-            Console.WriteLine($"Avertissement : {e.Message}");
+            Console.WriteLine($"Erreur de validation : {e.Message}");
+            throw new XmlSchemaValidationException(e.Message);
         }
     }
 }

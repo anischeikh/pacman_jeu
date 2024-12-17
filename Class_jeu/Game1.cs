@@ -14,8 +14,8 @@ namespace pacman
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
         private SoundEffect coinSound;
-        private const int windowWidth = 650;
-        private const int windowHeight = 700;
+        private int windowWidth = 650;
+        private int windowHeight = 700;
         private Player pacman;
         private List<Creature> ghosts;
         private List<Point> points;
@@ -570,7 +570,7 @@ namespace pacman
            
             Color EXITterColor =(gameOverOption == 1)
                     ? selectedColor
-                    : defaultColor; // 
+                    : defaultColor; 
             spriteBatch.DrawString(menuFont, option2, new Vector2(250, baseY + spacing), EXITterColor); 
         }
     }
