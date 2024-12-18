@@ -42,38 +42,38 @@ namespace Pacman
                 Console.WriteLine("Le fichier XML n'est pas valide.");
             }
 
-            // Charger le fichier XML
-            XmlDocument xmlDoc = new XmlDocument();
-            string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.Xml");
-            xmlDoc.Load(gameHistoryFilex);
-
-            // Charger le fichier XSLT
-            XslCompiledTransform xslt = new XslCompiledTransform();
-            xslt.Load(xslFile);
-
-            // Spécifier le fichier de sortie HTML
-            string htmlOutputFile = Path.Combine(currentDirectory, "Init_Game.html");
-
-            // Appliquer la transformation XSLT et générer le HTML
-            
-            using (XmlWriter writer = XmlWriter.Create(htmlOutputFile, new XmlWriterSettings { Indent = true }))
-            {
-                xslt.Transform(xmlDoc, writer);
-            }
-
-            // Ouvrir le fichier HTML généré dans le navigateur par défaut
-            Process.Start(new ProcessStartInfo(htmlOutputFile) { UseShellExecute = true });
-
-            // Ajouter une entrée dans l'historique des parties (Exemple)
-            
-
-            // Charger l'historique des parties
-            
-            using (XmlWriter writer = XmlWriter.Create(htmlOutputFile, new XmlWriterSettings { Indent = true }))
-            {
-                xslt.Transform(xmlDoc, writer);
-            }
-
+         //   // Charger le fichier XML
+         //   XmlDocument xmlDoc = new XmlDocument();
+         //   string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.Xml");
+         //   xmlDoc.Load(gameHistoryFilex);
+//
+         //   // Charger le fichier XSLT
+         //   XslCompiledTransform xslt = new XslCompiledTransform();
+         //   xslt.Load(xslFile);
+//
+         //   // Spécifier le fichier de sortie HTML
+         //   string htmlOutputFile = Path.Combine(currentDirectory, "Init_Game.html");
+//
+         //   // Appliquer la transformation XSLT et générer le HTML
+         //   
+         //   using (XmlWriter writer = XmlWriter.Create(htmlOutputFile, new XmlWriterSettings { Indent = true }))
+         //   {
+         //       xslt.Transform(xmlDoc, writer);
+         //   }
+//
+         //   // Ouvrir le fichier HTML généré dans le navigateur par défaut
+         //   Process.Start(new ProcessStartInfo(htmlOutputFile) { UseShellExecute = true });
+//
+         //   // Ajouter une entrée dans l'historique des parties (Exemple)
+         //   
+//
+         //   // Charger l'historique des parties
+         //   
+         //   using (XmlWriter writer = XmlWriter.Create(htmlOutputFile, new XmlWriterSettings { Indent = true }))
+         //   {
+         //       xslt.Transform(xmlDoc, writer);
+         //   }
+//
             //  démarrer le jeu
             using (var game = new pacman.Game1())
             {

@@ -437,45 +437,17 @@ namespace pacman
 
                 case etatJeu.GameOver:
 
-                    // Vérifier si le fichier HTML a déjà été généré
-                    if (!htmlGenerated)
-                    {
-                        try
-                        {
-                            // Définir les chemins pour les fichiers XML, XSLT et HTML
-                            string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
-                            string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
-                            string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
-
-                            // Créer une instance du gestionnaire XML
-                            var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
-
-                            // Appliquer la transformation XSLT pour générer le HTML
-                            xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
-
-                            // Ouvrir le fichier HTML généré dans le navigateur par défaut
-                            Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });
-
-                            // Marquer le fichier HTML comme généré
-                            htmlGenerated = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Erreur lors de la transformation XML -> HTML : " + ex.Message);
-                        }
-                    }
-
                     // Dessiner l'écran de fin de partie
                     DrawGameOver(_spriteBatch);
-                    htmlGenerated = true;
+                    
                     break;
 
                 case etatJeu.WIN:
                     DrawWIN(_spriteBatch);
-                    if (!htmlGenerated)
-                    {
-                        try
-                        {
+                    //if (!htmlGenerated)
+                   // {
+                      //  try
+                     //   {
                             // Définir les chemins pour les fichiers XML, XSLT et HTML
                             string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
                             string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
@@ -492,12 +464,12 @@ namespace pacman
 
                             // Marquer le fichier HTML comme généré
                             htmlGenerated = true;
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine("Erreur lors de la transformation XML -> HTML : " + ex.Message);
-                        }
-                    }
+                     //   }
+                    //    catch (Exception ex)
+                     //   {
+                      //      Console.WriteLine("Erreur lors de la transformation XML -> HTML : " + ex.Message);
+                     //   }
+                    
                     break;
             }
 
@@ -546,6 +518,35 @@ namespace pacman
 
         private void DrawGameOver(SpriteBatch spriteBatch)
         {
+            
+            // Vérifier si le fichier HTML a déjà été généré
+            if (!htmlGenerated)
+            {
+                try
+                {
+                    // Définir les chemins pour les fichiers XML, XSLT et HTML
+                    string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
+                    string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
+                    string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
+
+                    // Créer une instance du gestionnaire XML
+                    var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
+
+                    // Appliquer la transformation XSLT pour générer le HTML
+                    xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
+
+                    // Ouvrir le fichier HTML généré dans le navigateur par défaut
+                    Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });
+
+                    // Marquer le fichier HTML comme généré
+                    htmlGenerated = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Erreur lors de la transformation XML -> HTML : " + ex.Message);
+                }
+            }
+
             string option1 = "Again";
             string option2 = "Exit";
 
