@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Games xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="../xsd/gameHistory.xsd">
+    <Game>
+        <PlayerName>Paul</PlayerName>
+        <GameDate>2024-12-18 5:45:00</GameDate>
+        <Score>1500</Score>
+    </Game>
+    <Game>
+        <PlayerName>Marie</PlayerName>
+        <GameDate>2024-12-19 16:30:00</GameDate>
+        <Score>2000</Score>
+    </Game>
+    <Game>
+        <PlayerName>Jean</PlayerName>
+        <GameDate>2024-12-20 18:00:00</GameDate>
+        <Score>1200</Score>
+    </Game>
+</Games>

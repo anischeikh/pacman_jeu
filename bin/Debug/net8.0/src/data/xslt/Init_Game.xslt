@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns="http://www.w3.org/2001/XMLSchema-instance">
 
     <xsl:output method="html" indent="yes"/>
 
@@ -11,18 +12,18 @@
                 <title>Hi-Scores</title>
                 <style>
                     table {
-                    width: 50%;
-                    border-collapse: collapse;
-                    margin: 25px 0;
-                    font-size: 18px;
-                    text-align: left;
+                        width: 50%;
+                        border-collapse: collapse;
+                        margin: 25px 0;
+                        font-size: 18px;
+                        text-align: left;
                     }
                     th, td {
-                    padding: 12px;
-                    border: 1px solid #ddd;
+                        padding: 12px;
+                        border: 1px solid #ddd;
                     }
                     th {
-                    background-color: #f2f2f2;
+                        background-color: #f2f2f2;
                     }
                 </style>
             </head>

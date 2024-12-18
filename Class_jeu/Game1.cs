@@ -7,6 +7,13 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Threading;
+using Pacman.Class_xml_manager;
+using static Pacman.Class_xml_manager.XmlTransform;
+using System.IO;
+using System.Diagnostics;
+using System.Xml.Xsl;
+
+
 namespace pacman
 {
     public class Game1 : Game
@@ -25,6 +32,7 @@ namespace pacman
         private Texture2D gameOverImage;
         private Texture2D winImage;
         private Texture2D DebutImage;
+        private bool htmlGenerated = false;
         
         
         private SoundEffect menuSound; 
@@ -305,6 +313,7 @@ namespace pacman
                     case var _ when pacmanRectangle.Intersects(ghostRectangle):
                         
                         currentGameState = etatJeu.GameOver;
+                        
                        
                         return; 
                 }
@@ -427,10 +436,68 @@ namespace pacman
                     break;
 
                 case etatJeu.GameOver:
+
+                    // Vérifier si le fichier HTML a déjà été généré
+                    if (!htmlGenerated)
+                    {
+                        try
+                        {
+                            // Définir les chemins pour les fichiers XML, XSLT et HTML
+                            string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
+                            string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
+                            string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
+
+                            // Créer une instance du gestionnaire XML
+                            var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
+
+                            // Appliquer la transformation XSLT pour générer le HTML
+                            xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
+
+                            // Ouvrir le fichier HTML généré dans le navigateur par défaut
+                            Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });
+
+                            // Marquer le fichier HTML comme généré
+                            htmlGenerated = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Erreur lors de la transformation XML -> HTML : " + ex.Message);
+                        }
+                    }
+
+                    // Dessiner l'écran de fin de partie
                     DrawGameOver(_spriteBatch);
+                    htmlGenerated = true;
                     break;
+
                 case etatJeu.WIN:
                     DrawWIN(_spriteBatch);
+                    if (!htmlGenerated)
+                    {
+                        try
+                        {
+                            // Définir les chemins pour les fichiers XML, XSLT et HTML
+                            string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
+                            string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
+                            string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
+
+                            // Créer une instance du gestionnaire XML
+                            var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
+
+                            // Appliquer la transformation XSLT pour générer le HTML
+                            xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
+
+                            // Ouvrir le fichier HTML généré dans le navigateur par défaut
+                            Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });
+
+                            // Marquer le fichier HTML comme généré
+                            htmlGenerated = true;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Erreur lors de la transformation XML -> HTML : " + ex.Message);
+                        }
+                    }
                     break;
             }
 

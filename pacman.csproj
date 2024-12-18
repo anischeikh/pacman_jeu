@@ -1,29 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <RollForward>Major</RollForward>
         <PublishReadyToRun>false</PublishReadyToRun>
         <TieredCompilation>false</TieredCompilation>
+        <RunPostBuildEvent>Always</RunPostBuildEvent>
     </PropertyGroup>
+
     <PropertyGroup>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <ApplicationIcon>Icon.ico</ApplicationIcon>
     </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+        <Optimize>true</Optimize>
+        <Prefer32bit>true</Prefer32bit>
+    </PropertyGroup>
+
     <ItemGroup>
         <None Remove="Icon.ico"/>
         <None Remove="Icon.bmp"/>
-        <None Remove="Content\ghoste.png" />
         <None Remove="Content\win.jpeg" />
         <None Remove="Content\game-over.png" />
         <None Remove="Content\File.spritefont" />
+
+        <!-- Copier les fichiers nécessaires dans le répertoire de sortie -->
         <None Update="Content\src\data\xml\Init_Game.xml">
-          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="Content\src\data\xsd\Init_Game.xsd">
-          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Content\src\data\xslt\Init_Game.xslt">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
+
     <ItemGroup>
         <EmbeddedResource Include="Icon.ico">
             <LogicalName>Icon.ico</LogicalName>
@@ -32,16 +46,39 @@
             <LogicalName>Icon.bmp</LogicalName>
         </EmbeddedResource>
     </ItemGroup>
+
     <ItemGroup>
         <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.2.1105"/>
         <PackageReference Include="MonoGame.Content.Builder.Task" Version="3.8.2.1105"/>
     </ItemGroup>
+
     <ItemGroup>
-      <Folder Include="Content\bin\DesktopGL\Content\" />
-      <Folder Include="Content\image\" />
+        <Folder Include="Content\bin\DesktopGL\Content\" />
+        <Folder Include="Content\image\" />
     </ItemGroup>
+
+    <ItemGroup>
+        <Compile Remove="Class_xml_manager\save.cs" />
+        <Compile Remove="Class_xml_manager\XmlManager.cs" />
+    </ItemGroup>
+
+    <!-- Cible pour restaurer les outils .NET avant la restauration -->
     <Target Name="RestoreDotnetTools" BeforeTargets="Restore">
         <Message Text="Restoring dotnet tools" Importance="High"/>
         <Exec Command="dotnet tool restore"/>
     </Target>
+
+    <!-- Cible pour afficher le répertoire source actuel pendant la construction -->
+    <Target Name="ShowSourceDirectory" BeforeTargets="Build">
+        <Message Text="Répertoire source actuel : $(MSBuildProjectDirectory)" Importance="high" />
+    </Target>
+
+    <!-- Cible pour copier les fichiers nécessaires dans le répertoire bin/Debug -->
+    <Target Name="CopyFilesToOutputDirectory" AfterTargets="Build">
+        <!-- Copier Init_Game.xml, Init_Game.xsd, et Init_Game.xslt vers bin/Debug -->
+        <Copy SourceFiles="Content\src\data\xml\Init_Game.xml" DestinationFolder="$(OutDir)Content\src\data\xml\" />
+        <Copy SourceFiles="Content\src\data\xsd\Init_Game.xsd" DestinationFolder="$(OutDir)Content\src\data\xsd\" />
+        <Copy SourceFiles="Content\src\data\xslt\Init_Game.xslt" DestinationFolder="$(OutDir)Content\src\data\xslt\" />
+    </Target>
+
 </Project>

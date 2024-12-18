@@ -1,11 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Xsl;
 using System.Diagnostics;
+using System.Xml.Serialization;
 
 namespace Pacman
 {
+    // Classe représentant une partie
+   
+
+    // Classe représentant la collection de parties
+   
     class Program
     {
         public static void Main(string[] args)
@@ -37,7 +44,8 @@ namespace Pacman
 
             // Charger le fichier XML
             XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(xmlFile);
+            string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.Xml");
+            xmlDoc.Load(gameHistoryFilex);
 
             // Charger le fichier XSLT
             XslCompiledTransform xslt = new XslCompiledTransform();
@@ -47,6 +55,7 @@ namespace Pacman
             string htmlOutputFile = Path.Combine(currentDirectory, "Init_Game.html");
 
             // Appliquer la transformation XSLT et générer le HTML
+            
             using (XmlWriter writer = XmlWriter.Create(htmlOutputFile, new XmlWriterSettings { Indent = true }))
             {
                 xslt.Transform(xmlDoc, writer);
@@ -55,11 +64,25 @@ namespace Pacman
             // Ouvrir le fichier HTML généré dans le navigateur par défaut
             Process.Start(new ProcessStartInfo(htmlOutputFile) { UseShellExecute = true });
 
-            // Optionnel : démarrer le jeu
+            // Ajouter une entrée dans l'historique des parties (Exemple)
+            
+
+            // Charger l'historique des parties
+            
+            using (XmlWriter writer = XmlWriter.Create(htmlOutputFile, new XmlWriterSettings { Indent = true }))
+            {
+                xslt.Transform(xmlDoc, writer);
+            }
+
+            //  démarrer le jeu
             using (var game = new pacman.Game1())
             {
                 game.Run();
+                
             }
         }
+
+      
+        
     }
 }
