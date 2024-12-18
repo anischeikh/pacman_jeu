@@ -1,4 +1,4 @@
-﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Xml;
@@ -12,9 +12,10 @@ using static Pacman.Class_xml_manager.XmlTransform;
 using System.IO;
 using System.Diagnostics;
 using System.Xml.Xsl;
+using pacman.Class_xml_manager;
 
 
-namespace pacman
+namespace pacman.Class_jeu
 {
     public class Game1 : Game
     {
@@ -299,6 +300,10 @@ namespace pacman
                     case var _ when pacman.rectangle.Intersects(points[i].rectangle):
                         points.RemoveAt(i);
                         coinSound.Play();
+                        ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO PELLETS EATEN <tot_pellets_eaten>
+                        XmlScoreHandler.IncrementElement("Init_Game.xml", "//tot_pellets_eaten");
+                        ////////////////////////////////////////////////////////////////////////////////////////////
+                        
                         break;
                 }
             }
@@ -313,7 +318,9 @@ namespace pacman
                     case var _ when pacmanRectangle.Intersects(ghostRectangle):
                         
                         currentGameState = etatJeu.GameOver;
-                        
+                        ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO LOST GAMES IN ELEMENT <tot_games_lost>
+                        XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_lost");
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                        
                         return; 
                 }
@@ -324,6 +331,9 @@ namespace pacman
             {
                 case 0:
                     currentGameState = etatJeu.WIN;
+                    ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES WON <tot_games_won>
+                    XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_won");
+                    ////////////////////////////////////////////////////////////////////////////////////////////
                     break;
             }
         }
@@ -359,7 +369,9 @@ namespace pacman
                            
                                 currentGameState = etatJeu.Playing;
                                 menuSound = Content.Load<SoundEffect>("sound/pacman_eatCoin");
-                            
+                                ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES PLAYED <tot_games_played>
+                                XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_played");
+                                ////////////////////////////////////////////////////////////////////////////////////////////
 
                             break;
                         case 1: 
@@ -402,6 +414,9 @@ namespace pacman
                         Initialize();
                         LoadContent();
                         currentGameState = etatJeu.Playing;
+                        ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES PLAYED <tot_games_played>
+                        XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_played");
+                        ////////////////////////////////////////////////////////////////////////////////////////////
                         break;
 
                     case 1: 
