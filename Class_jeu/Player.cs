@@ -17,9 +17,9 @@ namespace pacman
         private float rotation;
 
         private float animationTimer;
-        private float animationInterval = 0.05f; 
-        private bool boucheOuverte = true; 
-        private bool isMoving;
+        private float PacmanAnimation= 0.07f; 
+        private bool OpenMouth = true; 
+        private bool Mouvement;
         
         private Map carte;
 
@@ -41,7 +41,7 @@ namespace pacman
 
         public virtual void Update(GameTime gameTime)
         {
-            isMoving = false;
+            Mouvement = false;
             KeyboardState state = Keyboard.GetState();
 
             Vector2 nextPosition = position;
@@ -50,51 +50,47 @@ namespace pacman
             {
                 nextPosition.X -= 5;
                 rotation = MathHelper.Pi;
-                isMoving = true;
+                Mouvement = true;
             }
             if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
             {
                 nextPosition.X += 5;
                 rotation = 0f;
-                isMoving = true;
+                Mouvement = true;
             }
             if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.Z))
             {
                 nextPosition.Y -= 5;
                 rotation = -MathHelper.PiOver2;
-                isMoving = true;
+                Mouvement = true;
             }
             if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
             {
                 nextPosition.Y += 5;
                 rotation = MathHelper.PiOver2;
-                isMoving = true;
+                Mouvement = true;
             }
-
-          
+            
             if (carte != null && carte.EstDeplacementValide(nextPosition, textureOuverte)) 
             {
                 position = nextPosition; 
                 carte.MangerPoint(position); 
             }
             
-            
-
-            // Limiter Pac-Man aux bords de la fenêtre
             position.X = MathHelper.Clamp(position.X, 0, windowWidth - textureOuverte.Width);
             position.Y = MathHelper.Clamp(position.Y, 0, windowHeight - textureOuverte.Height);
             rectangle.Location = position.ToPoint();
 
        
-            if (isMoving)
+            if (Mouvement)
             {
                 animationTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-                if (animationTimer >= animationInterval)
+                if (animationTimer >= PacmanAnimation)
                 {
-                    boucheOuverte = !boucheOuverte;
+                    OpenMouth = !OpenMouth;
 
-                    if (boucheOuverte)
+                    if (OpenMouth)
                     {
                         texture = textureOuverte; 
                     }
@@ -109,13 +105,11 @@ namespace pacman
             else
             {
                 texture = textureOuverte; 
-                boucheOuverte = true;
+                OpenMouth = true;
                 animationTimer = 0f; 
             }
         }
-
-
-
+        
         public void Draw(SpriteBatch spriteBatch)
         {
            

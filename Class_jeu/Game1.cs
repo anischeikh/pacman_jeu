@@ -34,8 +34,6 @@ namespace pacman.Class_jeu
         private Texture2D winImage;
         private Texture2D DebutImage;
         private bool htmlGenerated = false;
-        
-        
         private SoundEffect menuSound; 
         private bool menuSoundPlayed = false; 
         
@@ -45,25 +43,13 @@ namespace pacman.Class_jeu
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
-            
             _graphics.PreferredBackBufferWidth = windowWidth;
             _graphics.PreferredBackBufferHeight = windowHeight;
-
-        
             _graphics.IsFullScreen = false;
-
-           
             _graphics.SynchronizeWithVerticalRetrace = true;
-
-         
             IsFixedTimeStep = true;
             TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 60.0); 
-
-            
             _graphics.GraphicsProfile = GraphicsProfile.HiDef;
-
-          
             _graphics.ApplyChanges();
         }
 
@@ -88,23 +74,13 @@ namespace pacman.Class_jeu
          
             points = new List<Point>();
             ghosts = new List<Creature>();
-
-         
             currentGameState = etatJeu.Menu;
-
-          
-
-      
             base.Initialize();
         }
 
 
         protected override void LoadContent()
-        {
-        
-    
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
-       
+        {   _spriteBatch = new SpriteBatch(GraphicsDevice);
             Texture2D textureMur = Content.Load<Texture2D>("image/wall");
             Texture2D textureOuverte = Content.Load<Texture2D>("image/pacman");
             Texture2D textureFermee = Content.Load<Texture2D>("image/lock-open");
@@ -114,17 +90,10 @@ namespace pacman.Class_jeu
             winImage = Content.Load<Texture2D>("image/win");
             DebutImage = Content.Load<Texture2D>("image/image");
             menuSound = Content.Load<SoundEffect>("sound/menuSound");
-           
             string xmlPath = "src/data/xml/Init_Game.xml";
             map = RecupCarte(xmlPath, textureMur);
-
-          
             points = GenererPoints(texturePoint);
-
-           
             (pacman, ghosts) = InitialiserJoueurs(textureOuverte, textureFermee, textureGhost);
-            
-       
             menuFont = Content.Load<SpriteFont>("menu");
         }
 
@@ -134,21 +103,18 @@ namespace pacman.Class_jeu
             xmlDoc.Load(xmlPath);
             XmlNodeList lignes = xmlDoc.SelectNodes("//map/ligne");
             Console.WriteLine("map du jeu: \n");
+            
             foreach (XmlNode ligne in lignes)
             {   
-               
                 Console.WriteLine(ligne.InnerText);
             }
-
             XmlNode root = xmlDoc.DocumentElement;
             XmlElement rootElement = root as XmlElement;
-
             XmlNodeList noeudsLignes = rootElement.GetElementsByTagName("ligne");
-
             int nombreDeLignes = noeudsLignes.Count;
             int nombreDeColonnes = noeudsLignes[0].InnerText.Trim().Split(' ').Length;
-
             grille = new int[nombreDeLignes, nombreDeColonnes];
+            
             for (int i = 0; i < nombreDeLignes; i++)
             {
                 string ligneTexte = noeudsLignes[i].InnerText.Trim();
@@ -162,7 +128,6 @@ namespace pacman.Class_jeu
 
             XmlNode tailleNode = rootElement.GetElementsByTagName("taille").Item(0);
             tailleCase = Convert.ToInt32(tailleNode.InnerText);
-
             return new Map(grille, textureMur, tailleCase);
         }
 
@@ -258,26 +223,19 @@ namespace pacman.Class_jeu
                 case etatJeu.Menu:
                     UpdateMenu();
                     break;
-
                 case etatJeu.Playing:
                     UpdatePlaying(gameTime);
                     break;
-
                 case etatJeu.GameOver:
-                    
-                   
-                    
                     UpdateGameOver();
                     break;
                 case etatJeu.WIN:
                     UpdateGameOver();
                     break;
-
                 case etatJeu.EXIT:
                     Exit();
                     break;
             }
-
             base.Update(gameTime);
         }
 
@@ -285,8 +243,7 @@ namespace pacman.Class_jeu
         {
             coinSound = Content.Load<SoundEffect>("sound/pacman_eatCoin");
             pacman.Update(gameTime);
-
-           
+            
             for (int i = 0; i < ghosts.Count; i++)
             {
                 ghosts[i].Update(gameTime);
@@ -316,12 +273,10 @@ namespace pacman.Class_jeu
                 switch (true)
                 {
                     case var _ when pacmanRectangle.Intersects(ghostRectangle):
-                        
                         currentGameState = etatJeu.GameOver;
                         ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO LOST GAMES IN ELEMENT <tot_games_lost>
                         XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_lost");
                         ////////////////////////////////////////////////////////////////////////////////////////////
-                       
                         return; 
                 }
             }
@@ -353,7 +308,6 @@ namespace pacman.Class_jeu
                 case var _ when state.IsKeyDown(Keys.Up) && !previousKeyboardState.IsKeyDown(Keys.Up):
                     selectedOption = (selectedOption +1) % 2;
                     break;
-
                 case var _ when state.IsKeyDown(Keys.Down) && !previousKeyboardState.IsKeyDown(Keys.Down):
                     selectedOption = (selectedOption + 1) % 2;
                     break;
@@ -366,7 +320,6 @@ namespace pacman.Class_jeu
                     switch (selectedOption)
                     {
                         case 0:
-                           
                                 currentGameState = etatJeu.Playing;
                                 menuSound = Content.Load<SoundEffect>("sound/pacman_eatCoin");
                                 ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES PLAYED <tot_games_played>
@@ -388,13 +341,7 @@ namespace pacman.Class_jeu
 
         private void UpdateGameOver()
         {
-        
             KeyboardState state = Keyboard.GetState();
-           
-            
-
-
-         
             if (state.IsKeyDown(Keys.Up) && !previousKeyboardState.IsKeyDown(Keys.Up))
             {
                 gameOverOption = (gameOverOption +1) % 2;
@@ -403,8 +350,6 @@ namespace pacman.Class_jeu
             {
                 gameOverOption = (gameOverOption + 1) % 2; 
             }
-
-           
             if (state.IsKeyDown(Keys.Enter) && !previousKeyboardState.IsKeyDown(Keys.Enter))
             {
                 switch (gameOverOption)
@@ -418,7 +363,6 @@ namespace pacman.Class_jeu
                         XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_played");
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         break;
-
                     case 1: 
                         currentGameState = etatJeu.EXIT;
                         break;
@@ -432,8 +376,6 @@ namespace pacman.Class_jeu
             
             previousKeyboardState = state;
         }
-
-
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
@@ -449,45 +391,20 @@ namespace pacman.Class_jeu
                 case etatJeu.Playing:
                     DrawPlaying(_spriteBatch);
                     break;
-
                 case etatJeu.GameOver:
-
-                    // Dessiner l'écran de fin de partie
                     DrawGameOver(_spriteBatch);
-                    
                     break;
-
                 case etatJeu.WIN:
                     DrawWIN(_spriteBatch);
-                    //if (!htmlGenerated)
-                   // {
-                      //  try
-                     //   {
-                            // Définir les chemins pour les fichiers XML, XSLT et HTML
                             string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
                             string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
                             string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
-
-                            // Créer une instance du gestionnaire XML
                             var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
-
-                            // Appliquer la transformation XSLT pour générer le HTML
                             xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
-
-                            // Ouvrir le fichier HTML généré dans le navigateur par défaut
                             Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });
-
-                            // Marquer le fichier HTML comme généré
                             htmlGenerated = true;
-                     //   }
-                    //    catch (Exception ex)
-                     //   {
-                      //      Console.WriteLine("Erreur lors de la transformation XML -> HTML : " + ex.Message);
-                     //   }
-                    
                     break;
             }
-
             _spriteBatch.End();
 
             base.Draw(gameTime);
@@ -495,26 +412,15 @@ namespace pacman.Class_jeu
 
         private void DrawMenu(SpriteBatch spriteBatch)
         {
-            
             spriteBatch.Draw(DebutImage, new Rectangle(0, 0, windowWidth, windowHeight), Color.White);
-
-
             int baseY = 140;
             int spacing = 50; 
-
-            
             Color selectedColor = Color.Cyan; 
             Color defaultColor = Color.White; 
-
-          
             spriteBatch.DrawString(menuFont, "PLAY", new Vector2(250, baseY),
                 selectedOption == 0 ? selectedColor : defaultColor);
-
-           
             spriteBatch.DrawString(menuFont, "EXIT", new Vector2(250, baseY + spacing),
                 selectedOption == 1 ? selectedColor : defaultColor); 
-
-           
             if (selectedOption == 0)
             {
                 spriteBatch.DrawString(menuFont, "PLAY", new Vector2(250, baseY - 2),
@@ -533,27 +439,17 @@ namespace pacman.Class_jeu
 
         private void DrawGameOver(SpriteBatch spriteBatch)
         {
-            
-            // Vérifier si le fichier HTML a déjà été généré
             if (!htmlGenerated)
             {
                 try
                 {
-                    // Définir les chemins pour les fichiers XML, XSLT et HTML
+                  
                     string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
                     string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
                     string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
-
-                    // Créer une instance du gestionnaire XML
                     var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
-
-                    // Appliquer la transformation XSLT pour générer le HTML
                     xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
-
-                    // Ouvrir le fichier HTML généré dans le navigateur par défaut
                     Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });
-
-                    // Marquer le fichier HTML comme généré
                     htmlGenerated = true;
                 }
                 catch (Exception ex)
@@ -564,27 +460,15 @@ namespace pacman.Class_jeu
 
             string option1 = "Again";
             string option2 = "Exit";
-
-            
             spriteBatch.Draw(gameOverImage, new Rectangle(0, 0, windowWidth, windowHeight), Color.White);
-
-            
             int baseY = 140; 
             int spacing = 60; 
-
-        
             Color selectedColor = Color.Cyan; 
             Color defaultColor = Color.White; 
-
-          
             spriteBatch.DrawString(menuFont, option1, new Vector2(250, baseY),
                 gameOverOption == 0 ? selectedColor : defaultColor);
-
-          
             spriteBatch.DrawString(menuFont, option2, new Vector2(250, baseY + spacing),
                 gameOverOption == 1 ? selectedColor : defaultColor);
-
-         
             if (gameOverOption == 0)
             {
                 spriteBatch.DrawString(menuFont, option1, new Vector2(250, baseY - 5),
@@ -602,48 +486,29 @@ namespace pacman.Class_jeu
                     new Vector2(0, 0), 1.1f, SpriteEffects.None, 0f);
             }
         }
-
-
         private void DrawPlaying(SpriteBatch spriteBatch)
         {
-           
             map.Draw(spriteBatch);
-
-         
             pacman.Draw(spriteBatch);
-
-           
             for (int i = 0; i < points.Count; i++)
             {
                 points[i].Draw(spriteBatch);
             }
-
-          
+            
             for (int i = 0; i < ghosts.Count; i++)
             {
                 ghosts[i].Draw(spriteBatch);
             }
         }
-
-
-
         private void DrawWIN(SpriteBatch spriteBatch)
-        {
+        { 
             string option1 = "Again";
             string option2 = "Exit";
-
-        
             spriteBatch.Draw(winImage, new Rectangle(0, 0, windowWidth, windowHeight), Color.White);
-
-         
             int baseY = 140; 
             int spacing = 50; 
-
-     
             Color selectedColor = Color.Blue; 
             Color defaultColor = Color.Black; 
-
-           
             Color rejouerColor =
                 (gameOverOption == 0)
                     ? selectedColor
