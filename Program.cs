@@ -75,7 +75,7 @@ namespace Pacman
          //   }
 //
             //  démarrer le jeu
-            using (var game = new pacman.Game1())
+            using (var game = new pacman.Class_jeu.Game1())
             {
                 game.Run();
                 
