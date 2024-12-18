@@ -6,8 +6,7 @@
         <animationInterval>0.5</animationInterval>
     </pacman>
     <!--////////////////0_0//////////////////-->
-    <!-- PAUL ADDITIONS FOR XSLT DATA DISPLAY //TEST-->
-    
+    <!-- PAUL ADDITIONS FOR XSLT DATA DISPLAY-->
     <player_name>
         <first_name>Iguana</first_name>
         <last_name>Flying</last_name>
@@ -66,4 +65,9 @@
     <state>playing</state>
     <SelectOption> 0</SelectOption>
     <gameOverOption>0</gameOverOption>
+<<<<<<< HEAD
 </Game1>
+=======
+</Game1>
+
+>>>>>>> origin/main
