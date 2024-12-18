@@ -25,8 +25,8 @@ namespace pacman
         private Texture2D gameOverImage;
         private Texture2D winImage;
         private Texture2D DebutImage;
-        private TimeSpan deathSoundDuration = TimeSpan.FromSeconds(4);
-        private Timer deathSoundTimer;
+        
+        
         private SoundEffect menuSound; 
         private bool menuSoundPlayed = false; 
         
