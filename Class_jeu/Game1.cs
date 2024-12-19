@@ -80,20 +80,20 @@ namespace pacman.Class_jeu
 
         protected override void LoadContent()
         {   _spriteBatch = new SpriteBatch(GraphicsDevice);
-            Texture2D textureMur = Content.Load<Texture2D>("image/wall");
-            Texture2D textureOuverte = Content.Load<Texture2D>("image/pacman");
-            Texture2D textureFermee = Content.Load<Texture2D>("image/lock-open");
-            Texture2D texturePoint = Content.Load<Texture2D>("image/coin");
-            Texture2D textureGhost = Content.Load<Texture2D>("image/creature");
-            gameOverImage = Content.Load<Texture2D>("image/finish");
-            winImage = Content.Load<Texture2D>("image/win");
-            DebutImage = Content.Load<Texture2D>("image/image");
-            menuSound = Content.Load<SoundEffect>("sound/menuSound");
-            string xmlPath = "src/data/xml/Init_Game.xml";
+            Texture2D textureMur = Content.Load<Texture2D>("../../../Content/image/wall");
+            Texture2D textureOuverte = Content.Load<Texture2D>("../../../Content/image/pacman");
+            Texture2D textureFermee = Content.Load<Texture2D>("../../../Content/image/lock-open");
+            Texture2D texturePoint = Content.Load<Texture2D>("../../../Content/image/coin");
+            Texture2D textureGhost = Content.Load<Texture2D>("../../../Content/image/creature");
+            gameOverImage = Content.Load<Texture2D>("../../../Content/image/finish");
+            winImage = Content.Load<Texture2D>("../../../Content/image/win");
+            DebutImage = Content.Load<Texture2D>("../../../Content/image/image");
+            menuSound = Content.Load<SoundEffect>("../../../Content/sound/menuSound");
+            string xmlPath = "../../../Content/src/data/xml/Init_Game.xml";
             map = RecupCarte(xmlPath, textureMur);
             points = GenererPoints(texturePoint);
             (pacman, ghosts) = InitialiserJoueurs(textureOuverte, textureFermee, textureGhost);
-            menuFont = Content.Load<SpriteFont>("menu");
+            menuFont = Content.Load<SpriteFont>("../../../Content/menu");
         }
 
         public Map RecupCarte(string xmlPath, Texture2D textureMur)
@@ -240,7 +240,7 @@ namespace pacman.Class_jeu
 
         private void UpdatePlaying(GameTime gameTime)
         {
-            coinSound = Content.Load<SoundEffect>("sound/pacman_eatCoin");
+            coinSound = Content.Load<SoundEffect>("../../../Content/sound/pacman_eatCoin");
             pacman.Update(gameTime);
             
             for (int i = 0; i < ghosts.Count; i++)
@@ -257,7 +257,7 @@ namespace pacman.Class_jeu
                         points.RemoveAt(i);
                         coinSound.Play();
                         ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO PELLETS EATEN <tot_pellets_eaten>
-                        XmlScoreHandler.IncrementElement("Init_Game.xml", "//tot_pellets_eaten");
+                        XmlScoreHandler.IncrementElement("../../../Content/src/data/Init_Game.xml", "//tot_pellets_eaten");
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         
                         break;
@@ -274,7 +274,7 @@ namespace pacman.Class_jeu
                     case var _ when pacmanRectangle.Intersects(ghostRectangle):
                         currentGameState = etatJeu.GameOver;
                         ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO LOST GAMES IN ELEMENT <tot_games_lost>
-                        XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_lost");
+                        XmlScoreHandler.IncrementElement("../../../Content/xsd/Init_Game.xml","//tot_games_lost");
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         return; 
                 }
@@ -286,7 +286,7 @@ namespace pacman.Class_jeu
                 case 0:
                     currentGameState = etatJeu.WIN;
                     ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES WON <tot_games_won>
-                    XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_won");
+                    XmlScoreHandler.IncrementElement("../../../Content/xsd/Init_Game.xml","//tot_games_won");
                     ////////////////////////////////////////////////////////////////////////////////////////////
                     break;
             }
@@ -320,9 +320,9 @@ namespace pacman.Class_jeu
                     {
                         case 0:
                                 currentGameState = etatJeu.Playing;
-                                menuSound = Content.Load<SoundEffect>("sound/pacman_eatCoin");
+                                menuSound = Content.Load<SoundEffect>("../../../Content/sound/pacman_eatCoin");
                                 ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES PLAYED <tot_games_played>
-                                XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_played");
+                                XmlScoreHandler.IncrementElement("../../../Content/xml/Init_Game.xml","//tot_games_played");
                                 ////////////////////////////////////////////////////////////////////////////////////////////
 
                             break;
@@ -359,7 +359,7 @@ namespace pacman.Class_jeu
                         LoadContent();
                         currentGameState = etatJeu.Playing;
                         ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES PLAYED <tot_games_played>
-                        XmlScoreHandler.IncrementElement("Init_Game.xml","//tot_games_played");
+                        XmlScoreHandler.IncrementElement("../../../Content/xml/Init_Game.xml","//tot_games_played");
                         ////////////////////////////////////////////////////////////////////////////////////////////
                         break;
                     case 1: 
@@ -395,9 +395,9 @@ namespace pacman.Class_jeu
                     break;
                 case etatJeu.WIN:
                     DrawWIN(_spriteBatch);
-                            string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
-                            string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
-                            string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
+                            string gameHistoryFilex = Path.Combine("..","..","..","Content","src", "data", "xml", "gameHistory.xml");
+                            string htmlFile = Path.Combine("..","..","..","Content","src", "data", "xml", "Init_Game.html");
+                            string xsltFile = Path.Combine("..","..","..","Content","src", "data", "xslt", "Init_Game.xslt");
                             var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
                             xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
                             Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });
@@ -443,9 +443,9 @@ namespace pacman.Class_jeu
                 try
                 {
                   
-                    string gameHistoryFilex = Path.Combine("src", "data", "xml", "gameHistory.xml");
-                    string htmlFile = Path.Combine("src", "data", "xml", "Init_Game.html");
-                    string xsltFile = Path.Combine("src", "data", "xslt", "Init_Game.xslt");
+                    string gameHistoryFilex = Path.Combine("..","..","..","Content","src", "data", "xml", "gameHistory.xml");
+                    string htmlFile = Path.Combine("..","..","..","Content","src", "data", "xml", "Init_Game.html");
+                    string xsltFile = Path.Combine("..","..","..","Content","src", "data", "xslt", "Init_Game.xslt");
                     var xmlManager = new Pacman.Class_xml_manager.XmlTransform();
                     xmlManager.TransformXmlToHtml(gameHistoryFilex, xsltFile, htmlFile);
                     Process.Start(new ProcessStartInfo(htmlFile) { UseShellExecute = true });

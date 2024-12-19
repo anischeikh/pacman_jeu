@@ -2,7 +2,7 @@
 <Game1 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:noNamespaceSchemaLocation="../xsd/Init_Game.xsd">
     <pacman>
-        <rotation>0.25</rotation>
+        <rotation>0.25</rotation
         <animationInterval>0.5</animationInterval>
     </pacman>
     <!--////////////////0_0//////////////////-->

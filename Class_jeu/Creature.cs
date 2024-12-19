@@ -9,10 +9,10 @@ namespace BasicMonoGame
     {
         private int windowWidth;
         private int windowHeight;
-        private Map map;
+        private Map map; 
         private Vector2 ghostDirection; // Variable globale pour stocker la direction
         private float ghostSpeed;     
-        string xmlPath = "src/data/xml/Init_Game.xml";
+        string xmlPath = "../../../Content/src/data/xml/Init_Game.xml";
         //private Vector2 direction = new Vector2(1, 0); // Par défaut, le fantôme se déplace vers la droite
         public Creature(Texture2D texture, Vector2 position, int windowWidth, int windowHeight, int size = 30)
             : base(texture, position, size)
