@@ -41,8 +41,7 @@ namespace pacman.Class_jeu
         public Game1()
         { 
             _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-            IsMouseVisible = true;
+            Content.RootDirectory = "../../../Content/";
             _graphics.PreferredBackBufferWidth = windowWidth;
             _graphics.PreferredBackBufferHeight = windowHeight;
             _graphics.IsFullScreen = false;

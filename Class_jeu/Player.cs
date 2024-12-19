@@ -8,15 +8,12 @@ namespace pacman
 {
     internal class Player : Sprite
     {
-        
         private int windowWidth;
         private int windowHeight;
-
-        private Texture2D textureOuverte;
-        private Texture2D textureFermee;
+        private Texture2D OpenTxt;
+        private Texture2D ClosedTxt;
         private float rotation;
-
-        private float animationTimer;
+        private float Calculateur;
         private float PacmanAnimation= 0.07f; 
         private bool OpenMouth = true; 
         private bool Mouvement;
@@ -27,88 +24,92 @@ namespace pacman
         {
             this.carte = carte;
         }
-        
-
-        public Player(Texture2D textureOuverte, Texture2D textureFermee, Vector2 position, int size, int windowWidth, int windowHeight)
-            : base(textureOuverte, position, size)
+        public Player(Texture2D OpenTxt, Texture2D ClosedTxt, Vector2 position, int size, int windowWidth, int windowHeight)
+            : base(OpenTxt, position, size)
         {
             this.windowWidth = windowWidth;
             this.windowHeight = windowHeight;
-            this.textureOuverte = textureOuverte;
-            this.textureFermee = textureFermee;
+            this.OpenTxt = OpenTxt;
+            this.ClosedTxt = ClosedTxt;
             rotation = 0f;
         }
 
-        public virtual void Update(GameTime gameTime)
+       public virtual void Update(GameTime gameTime)
+{
+    Mouvement = false;
+    KeyboardState state = Keyboard.GetState();
+
+    Vector2 nextPosition = position;
+    Keys? keyPressed = null;
+
+    // Identifier la touche pressée
+    if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.Q))
+        keyPressed = Keys.Left;
+    else if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
+        keyPressed = Keys.Right;
+    else if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.Z))
+        keyPressed = Keys.Up;
+    else if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
+        keyPressed = Keys.Down;
+
+    // Gestion des déplacements avec un switch
+    switch (keyPressed)
+    {
+        case Keys.Left:
+            nextPosition.X -= 4;
+            rotation = MathHelper.Pi;
+            Mouvement = true;
+            break;
+
+        case Keys.Right:
+            nextPosition.X += 4;
+            rotation = 0f;
+            Mouvement = true;
+            break;
+
+        case Keys.Up:
+            nextPosition.Y -= 4;
+            rotation = -MathHelper.PiOver2;
+            Mouvement = true;
+            break;
+
+        case Keys.Down:
+            nextPosition.Y += 4;
+            rotation = MathHelper.PiOver2;
+            Mouvement = true;
+            break;
+    }
+
+   
+    if (carte != null && carte.EstDeplacementValide(nextPosition, OpenTxt))
+    {
+        position = nextPosition;
+        carte.MangerPoint(position);
+    }
+
+  
+    position.X = MathHelper.Clamp(position.X, 0, windowWidth - OpenTxt.Width);
+    position.Y = MathHelper.Clamp(position.Y, 0, windowHeight - OpenTxt.Height);
+    rectangle.Location = position.ToPoint();
+
+    if (Mouvement)
+    {
+        Calculateur += (float)gameTime.ElapsedGameTime.TotalSeconds;
+        if (Calculateur >= PacmanAnimation)
         {
-            Mouvement = false;
-            KeyboardState state = Keyboard.GetState();
-
-            Vector2 nextPosition = position;
-
-            if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.Q)) //deplacement de pacman 
-            {
-                nextPosition.X -= 5;
-                rotation = MathHelper.Pi;
-                Mouvement = true;
-            }
-            if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
-            {
-                nextPosition.X += 5;
-                rotation = 0f;
-                Mouvement = true;
-            }
-            if (state.IsKeyDown(Keys.Up) || state.IsKeyDown(Keys.Z))
-            {
-                nextPosition.Y -= 5;
-                rotation = -MathHelper.PiOver2;
-                Mouvement = true;
-            }
-            if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
-            {
-                nextPosition.Y += 5;
-                rotation = MathHelper.PiOver2;
-                Mouvement = true;
-            }
-            
-            if (carte != null && carte.EstDeplacementValide(nextPosition, textureOuverte)) 
-            {
-                position = nextPosition; 
-                carte.MangerPoint(position); 
-            }
-            
-            position.X = MathHelper.Clamp(position.X, 0, windowWidth - textureOuverte.Width);
-            position.Y = MathHelper.Clamp(position.Y, 0, windowHeight - textureOuverte.Height);
-            rectangle.Location = position.ToPoint();
-
-       
-            if (Mouvement)
-            {
-                animationTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-                if (animationTimer >= PacmanAnimation)
-                {
-                    OpenMouth = !OpenMouth;
-
-                    if (OpenMouth)
-                    {
-                        texture = textureOuverte; 
-                    }
-                    else
-                    {
-                        texture = textureFermee; 
-                    }
-
-                    animationTimer = 0f; 
-                }
-            }
-            else
-            {
-                texture = textureOuverte; 
-                OpenMouth = true;
-                animationTimer = 0f; 
-            }
+            OpenMouth = !OpenMouth;
+            texture = OpenMouth ? OpenTxt : ClosedTxt;
+            Calculateur = 0f;
         }
+    }
+    else
+    {
+        texture = OpenTxt;
+        OpenMouth = true;
+        Calculateur = 0f;
+    }
+}
+
         
         public void Draw(SpriteBatch spriteBatch)
         {
