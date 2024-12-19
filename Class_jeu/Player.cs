@@ -42,7 +42,7 @@ namespace pacman
     Vector2 nextPosition = position;
     Keys? keyPressed = null;
 
-    
+    // Identifier la touche pressée
     if (state.IsKeyDown(Keys.Left) || state.IsKeyDown(Keys.Q))
         keyPressed = Keys.Left;
     else if (state.IsKeyDown(Keys.Right) || state.IsKeyDown(Keys.D))
@@ -52,7 +52,7 @@ namespace pacman
     else if (state.IsKeyDown(Keys.Down) || state.IsKeyDown(Keys.S))
         keyPressed = Keys.Down;
 
-   
+    // Gestion des déplacements avec un switch
     switch (keyPressed)
     {
         case Keys.Left:
@@ -86,6 +86,8 @@ namespace pacman
         position = nextPosition;
         carte.MangerPoint(position);
     }
+
+  
     position.X = MathHelper.Clamp(position.X, 0, windowWidth - OpenTxt.Width);
     position.Y = MathHelper.Clamp(position.Y, 0, windowHeight - OpenTxt.Height);
     rectangle.Location = position.ToPoint();
@@ -93,10 +95,10 @@ namespace pacman
     if (Mouvement)
     {
         Calculateur += (float)gameTime.ElapsedGameTime.TotalSeconds;
-
         if (Calculateur >= PacmanAnimation)
         {
             OpenMouth = !OpenMouth;
+            texture = OpenMouth ? OpenTxt : ClosedTxt;
             Calculateur = 0f;
         }
     }
