@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+
+    <!-- Élément racine Game -->
+    <xs:element name="Game1">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="pacman" type="player"/>
+
+                <!-- PAUL ADDITIONS FOR XSLT DATA DISPLAY-->
+                <xs:element name="player_name" type="player_name"/>
+                <xs:element name="player_scores" type="scores"/>
+                <!--////////////////0_0//////////////////-->
+
+                <xs:element name="carte" type="carte_type"/>
+                <xs:element name="ghosts" type="ghost" maxOccurs="unbounded"/>
+                <xs:element name="points" type="objet" maxOccurs="unbounded"/>
+                <xs:element name="grille" type="tableau"/>
+                <xs:element name="taille" type="xs:int"/>
+                <xs:element name="state" type="state_type"/>
+                <xs:element name="SelectOption" type="option"/>
+                <xs:element name="gameOverOption" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Type complexe pour la carte -->
+    <xs:complexType name="carte_type">
+        <xs:sequence>
+            <xs:element name="map" type="tableau"/>
+            <xs:element name="taille" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour Pacman -->
+    <xs:complexType name="player">
+        <xs:sequence>
+            <xs:element name="rotation" type="xs:float"/>
+            <xs:element name="animationInterval" type="xs:float"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+
+
+    <!--////////////////0_0//////////////////-->
+    <!-- PAUL ADDITIONS FOR XSLT DATA DISPLAY-->
+
+    <!-- Type Complexe player_name-->
+    <xs:complexType name="player_name">
+        <xs:sequence>
+            <xs:element name="first_name" type="xs:string"/>
+            <xs:element name="last_name" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="scores">
+        <xs:sequence>
+            <xs:element name="tot_pellets_eaten" type="xs:int"/>
+            <xs:element name="tot_games_played" type="xs:int"/>
+            <xs:element name="tot_games_won" type="xs:int"/>
+            <xs:element name="tot_games_lost" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--////////////////////////////////////-->
+
+
+
+
+    <!-- Type complexe pour un Creature -->
+    <xs:complexType name="ghost">
+        <xs:sequence>
+            <xs:element name="direction" type="vector2"/>
+            <xs:element name="speed" type="xs:float"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour les objets -->
+    <xs:complexType name="objet">
+        <xs:sequence>
+            <xs:element name="position" type="vector2"/>
+            <xs:element name="size" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- État du jeu -->
+    <xs:simpleType name="state_type">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="menu"/>
+            <xs:enumeration value="playing"/>
+            <xs:enumeration value="gameover"/>
+            <xs:enumeration value="win"/>
+            <xs:enumeration value="exit"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Type simple pour les couleurs -->
+    <xs:simpleType name="couleur">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="green"/>
+            <xs:enumeration value="red"/>
+            <xs:enumeration value="blue"/>
+            <xs:enumeration value="yellow"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Options de sélection -->
+    <xs:simpleType name="option">
+        <xs:restriction base="xs:int">
+            <xs:enumeration value="0"/>
+            <xs:enumeration value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Type complexe pour les vecteurs -->
+    <xs:complexType name="vector2">
+        <xs:sequence>
+            <xs:element name="x" type="xs:int"/>
+            <xs:element name="y" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Type complexe pour les rectangles -->
+    <xs:complexType name="rectangle">
+        <xs:sequence>
+            <xs:element name="x" type="xs:int"/>
+            <xs:element name="y" type="xs:int"/>
+            <xs:element name="width" type="xs:int"/>
+            <xs:element name="height" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Une ligne de la carte -->
+    <xs:simpleType name="ligne">
+        <xs:list itemType="xs:int"/>
+    </xs:simpleType>
+
+    <!-- Une table composée de lignes -->
+    <xs:complexType name="tableau">
+        <xs:sequence>
+            <xs:element name="ligne" type="ligne" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+        
