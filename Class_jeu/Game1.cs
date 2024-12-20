@@ -74,7 +74,7 @@ namespace pacman.Class_jeu
             points = new List<Point>();
             ghosts = new List<Creature>();
             currentGameState = etatJeu.Menu;
-            XmlScoreHandler.InitializeCurrentPelletScore("Content/src/data/xml/Init_Game.xml","//current_pellets_eaten");
+            XmlScoreHandler.InitializeCurrentPelletScore("Content/src/data/xml/Init_Game.xml","//tot_current_pellets");
             base.Initialize();
         }
 
