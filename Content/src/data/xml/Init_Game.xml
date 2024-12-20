@@ -16,6 +16,7 @@
     <tot_games_played>1</tot_games_played>
     <tot_games_won>0</tot_games_won>
     <tot_games_lost>3</tot_games_lost>
+    <tot_current_pellets>0</tot_current_pellets>
   </player_scores>
   <!--////////////////////////////////////-->
   <carte>
