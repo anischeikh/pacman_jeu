@@ -98,7 +98,14 @@ namespace pacman
         if (Calculateur >= PacmanAnimation)
         {
             OpenMouth = !OpenMouth;
-            texture = OpenMouth ? OpenTxt : ClosedTxt;
+            if (OpenMouth)
+            {
+                texture = OpenTxt;
+            }
+            else
+            {
+                texture = ClosedTxt;
+            }
             Calculateur = 0f;
         }
     }
