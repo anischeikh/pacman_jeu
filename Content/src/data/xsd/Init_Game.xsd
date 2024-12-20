@@ -62,6 +62,7 @@
             <xs:element name="tot_games_played" type="xs:int"/>
             <xs:element name="tot_games_won" type="xs:int"/>
             <xs:element name="tot_games_lost" type="xs:int"/>
+            <xs:element name="tot_current_pellets" type="xs:int"/>
         </xs:sequence>
     </xs:complexType>
 
