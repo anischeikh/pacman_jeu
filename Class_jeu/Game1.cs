@@ -74,6 +74,7 @@ namespace pacman.Class_jeu
             points = new List<Point>();
             ghosts = new List<Creature>();
             currentGameState = etatJeu.Menu;
+            XmlScoreHandler.InitializeCurrentPelletScore("Content/src/data/xml/Init_Game.xml","//tot_current_pellets");
             base.Initialize();
         }
 
@@ -259,6 +260,7 @@ namespace pacman.Class_jeu
                         ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO PELLETS EATEN <tot_pellets_eaten>
                         XmlScoreHandler.IncrementElement("Content/src/data/xml/Init_Game.xml", "//tot_pellets_eaten");
                         ////////////////////////////////////////////////////////////////////////////////////////////
+                        XmlScoreHandler.IncrementElement("Content/src/data/xml/Init_Game.xml", "//tot_current_pellets");
                         
                         break;
                 }
@@ -276,6 +278,7 @@ namespace pacman.Class_jeu
                         ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO LOST GAMES IN ELEMENT <tot_games_lost>
                         XmlScoreHandler.IncrementElement("Content/src/data/xml/Init_Game.xml","//tot_games_lost");
                         ////////////////////////////////////////////////////////////////////////////////////////////
+                        XmlScoreHandler.InitializeCurrentPelletScore("Content/src/data/xml/Init_Game.xml","//tot_current_pellets");
                         return; 
                 }
             }
@@ -288,6 +291,7 @@ namespace pacman.Class_jeu
                     ///////PAUL NOTE: ADD HERE CODE FOR THE XML WRITE +1 TO GAMES WON <tot_games_won>
                     XmlScoreHandler.IncrementElement("Content/src/data/xml/Init_Game.xml","//tot_games_won");
                     ////////////////////////////////////////////////////////////////////////////////////////////
+                    XmlScoreHandler.InitializeCurrentPelletScore("Content/src/data/xml/Init_Game.xml","//tot_current_pellets");    
                     break;
             }
         }
