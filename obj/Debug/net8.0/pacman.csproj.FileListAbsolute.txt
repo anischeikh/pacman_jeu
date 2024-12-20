@@ -135,3 +135,4 @@ C:\Users\DVE\RiderProjects\pacman_jeu\obj\Debug\net8.0\ref\pacman.dll
 C:\Users\DVE\RiderProjects\pacman_jeu\bin\Debug\net8.0\Content\src\data\xml\Init_Game.xml
 C:\Users\DVE\RiderProjects\pacman_jeu\bin\Debug\net8.0\Content\src\data\xsd\Init_Game.xsd
 C:\Users\DVE\RiderProjects\pacman_jeu\bin\Debug\net8.0\Content\src\data\xslt\Init_Game.xslt
+C:\Users\DVE\RiderProjects\pacman_jeu\bin\Debug\net8.0\Content\menu.xnb

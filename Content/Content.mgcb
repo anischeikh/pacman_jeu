@@ -109,6 +109,13 @@
 /processorParam:TextureFormat=Color
 /build:image/win.jpg
 
+#begin menu.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:menu.spritefont
+
 #begin sound/menuSound.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor

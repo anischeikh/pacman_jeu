@@ -18,8 +18,8 @@ namespace Pacman
         public static void Main(string[] args)
         {
             // Chemin relatif au projet (à partir du répertoire bin)
-            string xmlFile = Path.Combine("..","..","..","Content","src", "data", "xml", "Init_Game.xml");
-            string xslFile = Path.Combine("..","..","..","Content","src", "data", "xslt", "Init_Game.xslt"); // Assurez-vous que vous avez le fichier XSLT dans le bon emplacement
+            string xmlFile = Path.Combine("Content","src", "data", "xml", "Init_Game.xml");
+            string xslFile = Path.Combine("Content","src", "data", "xslt", "Init_Game.xslt"); // Assurez-vous que vous avez le fichier XSLT dans le bon emplacement
 
             // Obtenir le répertoire courant du projet pour le chargement de fichiers
             string currentDirectory = Directory.GetCurrentDirectory();
@@ -29,7 +29,7 @@ namespace Pacman
             xslFile = Path.Combine(currentDirectory, xslFile);
 
            
-            string xsdFile = Path.Combine("..","..","..","Content","src", "data", "xsd", "Init_Game.xsd");
+            string xsdFile = Path.Combine("Content","src", "data", "xsd", "Init_Game.xsd");
             xsdFile = Path.Combine(currentDirectory, xsdFile);
             bool isValid = XmlValidator.ValidateXml(xmlFile, xsdFile);
 

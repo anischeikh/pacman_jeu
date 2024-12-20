@@ -2,8 +2,8 @@
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>C:/Users/DVE/RiderProjects/pacman_jeu/Content/menu.spritefont</SourceFile>
   <SourceTime>2024-12-17T02:54:49.0011569+01:00</SourceTime>
-  <DestFile>C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/menu.xnb</DestFile>
-  <DestTime>2024-12-20T02:22:35.8551496+01:00</DestTime>
+  <DestFile>C:/Users/DVE/RiderProjects/pacman_jeu/Content/bin/DesktopGL/Content/menu.xnb</DestFile>
+  <DestTime>2024-12-20T02:22:42.7855188+01:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2024-08-16T19:05:56+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

@@ -4,19 +4,21 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/coin.png</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/creature.jpg</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/finish.jpg</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/image.jpg</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/lock-open.png</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/pacman.png</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/wall.jpg</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/image/win.jpg</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/sound/menuSound.wav</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/sound/pacman_death.wav</File>
-    <File>C:/Users/DVE/Desktop/JEU/Content/sound/pacman_eatCoin.wav</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/coin.png</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/creature.jpg</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/finish.jpg</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/image.jpg</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/lock-open.png</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/pacman.png</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/wall.jpg</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/win.jpg</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/menu.spritefont</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/menuSound.wav</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/pacman_death.wav</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/pacman_eatCoin.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

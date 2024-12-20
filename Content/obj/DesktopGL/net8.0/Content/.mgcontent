@@ -12,11 +12,13 @@
     <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/pacman.png</File>
     <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/wall.jpg</File>
     <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/image/win.jpg</File>
+    <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/menu.spritefont</File>
     <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/menuSound.wav</File>
     <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/pacman_death.wav</File>
     <File>C:/Users/DVE/RiderProjects/pacman_jeu/Content/sound/pacman_eatCoin.wav</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
